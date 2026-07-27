@@ -1,23 +1,685 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "치질수술 실비 보험 청구 시 급여와 비급여의 보장 범위 차이는 무엇인가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "실손의료보험에서 치질수술은 가입 시기에 따라 보장 범위가 다릅니다. 2009년 10월 이후 가입한 표준화 실비의 경우 국민건강보험법상 요양급여에 해당하는 본인부담금은 보장 비율에 따라 환급받을 수 있으나, 비급여 항목인 무통주사료, 비급여 재료대, 상급병실료 등은 보장 대상에서 제외됩니다. 가입하신 보험의 세대별 약관을 세밀하게 비교하는 것이 필요합니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "2026년 실손보험 개정안에 따른 치질수술 실비 청구의 주요 변경 사항이 있나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "2026년에 도입된 5세대 실손보험의 경우, 비중증 비급여 항목에 대한 자기부담률이 50퍼센트까지 인상되었으며 연간 한도도 제한됩니다. 다만 치질수술의 핵심인 급여 본인부담금 부분은 기존의 급여 보장 기조를 유지하므로, 입원 및 치료 시 급여와 비급여 비율을 철저히 계산해 청구해야 합니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "수술비 특약과 실비 보험을 중복으로 청구하여 혜택을 받을 수 있나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "네, 가능합니다. 실손의료보험은 실제 지출한 비용을 비례보상하지만, 생명보험사나 손해보험사의 질병수술비 또는 종수술비 특약은 정액 보상 상품입니다. 따라서 치질수술 후 실비 청구로 급여 의료비를 돌려받는 동시에 가입하신 수술비 특약의 약관에 치핵 수술이 포함되어 있다면 중복으로 정액 수술비를 지급받을 수 있습니다."
+          }
+        }
+      ]
+    }
+    </script>
+    
+    <style>
+        :root {
+            --primary-color: #2c3e50; /* 차분하고 신뢰감 있는 딥블루 */
+            --secondary-color: #319795; /* 부드럽고 깨끗한 메디컬 티알색 */
+            --accent-color: #dd6b20; /* 온화한 주황색 포인트 */
+            --text-color: #2d3748; /* 가독성 높은 차콜색 */
+            --bg-light: #f7fafc; /* 따뜻하고 부드러운 오프화이트 배경 */
+            --bg-dark: #1a202c; /* 깊이 있는 다크 그레이 */
+            --border-light: #e2e8f0;
+            --box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+            --card-bg: #ffffff;
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+        
+        body { 
+            font-family: 'Noto Sans KR', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background-color: var(--bg-light); 
+            color: var(--text-color); 
+            line-height: 1.9; 
+            font-weight: 400; 
+        }
+        .container { 
+            max-width: 1000px; 
+            margin: 0 auto; 
+            padding: 0 20px; 
+        }
+        
+        header { 
+            background-color: var(--card-bg); 
+            padding: 20px 0; 
+            border-bottom: 1px solid var(--border-light); 
+            box-shadow: var(--box-shadow); 
+        }
+        header h1 { 
+            margin: 0; 
+            font-size: 1.6em; 
+            color: var(--primary-color); 
+            font-weight: 900; 
+            text-align: center;
+        }
+        header h1 a { 
+            text-decoration: none; 
+            color: inherit; 
+        }
+
+        .hero { 
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%); 
+            color: #fff; 
+            text-align: center; 
+            padding: 60px 20px 40px; 
+        }
+        .hero h2 { 
+            font-size: 2.2em; 
+            margin-bottom: 15px; 
+            font-weight: 900; 
+            line-height: 1.4; 
+        }
+        .hero p { 
+            font-size: 1.1em; 
+            margin-bottom: 30px; 
+            font-weight: 300; 
+            opacity: 0.9;
+        }
+        
+        .compare-form-box { 
+            background-color: var(--card-bg); 
+            padding: 30px; 
+            border-radius: 12px; 
+            box-shadow: var(--box-shadow); 
+            margin-top: 30px; 
+            text-align: left; 
+            color: var(--text-color);
+        }
+        .compare-form-box h3 { 
+            color: var(--primary-color); 
+            text-align: center; 
+            margin-bottom: 20px; 
+            font-size: 1.5em; 
+            font-weight: 700; 
+        }
+        .compare-form-notice {
+            text-align: center; 
+            color: var(--accent-color); 
+            font-weight: 700;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        
+        .form-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+            gap: 15px; 
+            margin-bottom: 20px; 
+        }
+        .form-group { 
+            margin-bottom: 10px; 
+        }
+        .form-group label { 
+            display: block; 
+            margin-bottom: 6px; 
+            font-weight: 500; 
+            color: var(--text-color); 
+            font-size: 0.9em; 
+        }
+        .form-group input, .form-group select { 
+            width: 100%; 
+            padding: 10px; 
+            border: 1px solid var(--border-light); 
+            border-radius: 6px; 
+            box-sizing: border-box; 
+            background-color: #fff;
+            color: var(--text-color);
+            font-size: 0.9em;
+            transition: border-color 0.3s; 
+        }
+        .form-group input:focus, .form-group select:focus { 
+            border-color: var(--secondary-color); 
+            outline: none; 
+        }
+
+        .cta-btn { 
+            background-color: var(--btn-cta); 
+            color: #fff; 
+            padding: 15px 30px; 
+            font-size: 1.2em; 
+            font-weight: bold; 
+            border: none; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            transition: background-color 0.3s, transform 0.2s; 
+            box-shadow: 0 4px 10px rgba(221,107,32,0.3); 
+            width: 100%; 
+            margin-top: 15px; 
+        }
+        .cta-btn:hover { 
+            background-color: #c05621; 
+            transform: translateY(-1px); 
+        }
+
+        .content-section { 
+            padding: 50px 0; 
+        }
+        .content-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: var(--box-shadow);
+            border: 1px solid var(--border-light);
+        }
+        .content-section h2 { 
+            font-size: 1.8em; 
+            color: var(--primary-color); 
+            border-bottom: 2px solid var(--secondary-color); 
+            padding-bottom: 12px; 
+            margin-top: 0;
+            margin-bottom: 30px; 
+            font-weight: 700; 
+        }
+        .content-section h3 { 
+            font-size: 1.4em; 
+            color: var(--primary-color); 
+            margin-top: 35px; 
+            margin-bottom: 15px; 
+            border-left: 4px solid var(--secondary-color); 
+            padding-left: 12px; 
+            font-weight: 700; 
+        }
+        .content-section h4 { 
+            font-size: 1.1em; 
+            color: var(--secondary-color); 
+            margin-top: 20px; 
+            margin-bottom: 10px; 
+            font-weight: 700; 
+        }
+        .content-section p { 
+            margin-bottom: 18px; 
+            font-size: 1em; 
+            color: var(--text-color); 
+            text-align: justify; 
+        }
+        .content-section strong {
+            color: var(--primary-color);
+        }
+
+        .data-visualization { 
+            margin: 30px 0; 
+            padding: 25px; 
+            background-color: var(--bg-light); 
+            border-radius: 10px; 
+            border: 1px solid var(--border-light); 
+        }
+        .data-visualization h4 { 
+            text-align: center; 
+            color: var(--primary-color); 
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        .pricing-table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 15px; 
+            font-size: 0.95em; 
+        }
+        .pricing-table th, .pricing-table td { 
+            border: 1px solid var(--border-light); 
+            padding: 12px; 
+            text-align: center; 
+        }
+        .pricing-table th { 
+            background-color: var(--secondary-color); 
+            color: #fff; 
+            font-weight: 700; 
+        }
+        .pricing-table tr:nth-child(even) { 
+            background-color: #fff; 
+        }
+        .highlight-row { 
+            background-color: #fffaf0 !important; 
+            font-weight: 700; 
+            color: var(--accent-color); 
+        }
+
+        .external-links { 
+            margin-top: 40px; 
+            padding-top: 25px; 
+            border-top: 1px dashed var(--border-light); 
+        }
+        .external-links h3 { 
+            border-left: none; 
+            padding-left: 0; 
+            text-align: center; 
+            color: var(--primary-color); 
+        }
+        .external-links ul { 
+            list-style: none; 
+            padding: 0; 
+            text-align: center; 
+        }
+        .external-links li { 
+            margin-bottom: 12px; 
+        }
+        .external-links a { 
+            color: var(--secondary-color); 
+            text-decoration: none; 
+            font-weight: 500; 
+            transition: color 0.3s; 
+        }
+        .external-links a:hover { 
+            color: var(--accent-color); 
+            text-decoration: underline; 
+        }
+
+        .faq-item { 
+            border: 1px solid var(--border-light); 
+            border-radius: 8px; 
+            margin-bottom: 12px; 
+            overflow: hidden; 
+            background-color: #fff;
+        }
+        .faq-item h3 { 
+            cursor: pointer; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            background-color: #f7fafc; 
+            color: var(--primary-color); 
+            padding: 15px 20px; 
+            margin: 0; 
+            border-left: none; 
+            font-size: 1.05em; 
+        }
+        .faq-item h3 .toggle-txt {
+            font-size: 0.85em;
+            color: var(--secondary-color);
+            font-weight: normal;
+        }
+        .faq-item p { 
+            display: none; 
+            padding: 20px; 
+            background-color: #fff; 
+            color: var(--text-color); 
+            border-top: 1px solid var(--border-light); 
+            line-height: 1.8; 
+            margin: 0;
+        }
+        .faq-item.active p { 
+            display: block; 
+        }
+        
+        .keyword-list { 
+            list-style: none; 
+            padding: 0; 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            margin-top: 25px; 
+        }
+        .keyword-list li { 
+            background-color: var(--secondary-color); 
+            color: #fff; 
+            padding: 6px 14px; 
+            margin: 4px; 
+            border-radius: 20px; 
+            font-weight: 500; 
+            font-size: 0.85em; 
+            transition: background-color 0.3s; 
+        }
+        .keyword-list li:hover { 
+            background-color: var(--primary-color); 
+        }
+
+        @media (max-width: 768px) {
+            .hero h2 { font-size: 1.8em; }
+            .hero p { font-size: 1em; }
+            .compare-form-box { padding: 20px; }
+            .form-grid { grid-template-columns: 1fr; }
+            .content-section h2 { font-size: 1.5em; }
+            .content-section h3 { font-size: 1.25em; }
+            .content-section p { font-size: 0.95em; }
+            .cta-btn { font-size: 1.1em; padding: 12px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1><a href="/">치질수술 실비 보험 보장 범위와 2026년 기준 급여 청구 가이드</a></h1>
+        </div>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        <section class="hero">
+            <div class="container">
+                <h2>환자 맞춤형 치질수술 실비 보험 급여 혜택 정밀 진단 서비스</h2>
+                <p>가입한 실손보험의 세대별 보장 비율을 계산하고 치료비 본인부담금을 간편하게 예측해보세요.</p>
+                
+                <div class="compare-form-box">
+                    <h3>실시간 치질수술 실비 보장 비율 및 본인부담금 계산 신청</h3>
+                    <p class="compare-form-notice">정밀한 약관 분석을 위해 필수 정보를 빠짐없이 기재해주시면 개인화된 계산 결과를 확인할 수 있습니다.</p>
+                    <form action="#" method="post" id="insurance-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="user-name">성함</label>
+                                <input type="text" id="user-name" placeholder="실명을 입력해 주세요" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="user-phone">연락처</label>
+                                <input type="tel" id="user-phone" placeholder="010-0000-0000" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="user-age-group">연령대 선택</label>
+                                <select id="user-age-group" required>
+                                    <option value="">연령대 선택</option>
+                                    <option value="10">10대 청소년</option>
+                                    <option value="20">20대 사회초년생</option>
+                                    <option value="30">30대 직장인 및 임산부</option>
+                                    <option value="40">40대 중장년층</option>
+                                    <option value="50">50대 장년층</option>
+                                    <option value="60">60대 이상 노년층</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="insurance-gen">보유 중인 실손보험 세대</label>
+                                <select id="insurance-gen" required>
+                                    <option value="">가입 시기 선택</option>
+                                    <option value="1">1세대 실비 (2009년 8월 이전 가입)</option>
+                                    <option value="2">2세대 실비 (2009년 9월 ~ 2017년 3월)</option>
+                                    <option value="3">3세대 실비 (2017년 4월 ~ 2021년 6월)</option>
+                                    <option value="4">4세대 실비 (2021년 7월 ~ 2026년 4월)</option>
+                                    <option value="5">5세대 실비 (2026년 5월 이후 신규 가입)</option>
+                                    <option value="none">실손보험 미보유</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="surgery-type">선호하는 수술법 종류</label>
+                                <select id="surgery-type" required>
+                                    <option value="">수술 방식 선택</option>
+                                    <option value="standard">일반 메스 절제술</option>
+                                    <option value="pph">원형 자동 문합기 (PPH) 수술</option>
+                                    <option value="laser">레이저 치핵 절제술</option>
+                                    <option value="conservative">보존적 약물 및 좌욕 치료</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="hospitalization-days">예상 입원 일수</label>
+                                <select id="hospitalization-days" required>
+                                    <option value="">입원 기간 선택</option>
+                                    <option value="0">통원 및 당일 퇴원</option>
+                                    <option value="1">1박 2일 입원</option>
+                                    <option value="2">2박 3일 표준 입원</option>
+                                    <option value="3">3박 4일 이상 입원</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="pca-consent">수술 후 무통주사(PCA) 신청 여부</label>
+                                <select id="pca-consent" required>
+                                    <option value="">신청 여부 선택</option>
+                                    <option value="yes">신청 (통증 최소화, 비급여 요금 추가)</option>
+                                    <option value="no">미신청 (기본 진통제 처방)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="room-type">희망 병실 등급</label>
+                                <select id="room-type" required>
+                                    <option value="">병실 선택</option>
+                                    <option value="multi">다인실 (4인실 이상, 급여 보장 가능)</option>
+                                    <option value="double">2-3인실 (급여 일부 보장 적용)</option>
+                                    <option value="single">1인실 특실 (전액 비급여 부담)</option>
+                                </select>
+                            </div>
+                            <div class="form-group" style="grid-column: span 1;">
+                                <label for="extra-rider">수술비 특약 보유 여부</label>
+                                <select id="extra-rider" required>
+                                    <option value="">보유 여부 선택</option>
+                                    <option value="yes">질병수술비 또는 종수술비 보유</option>
+                                    <option value="no">특약 미가입</option>
+                                    <option value="unknown">잘 모름 (확인 필요)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div style="margin-top: 15px; display: flex; align-items: center;">
+                            <input type="checkbox" id="privacy-agree" required style="width: auto; margin-right: 10px;">
+                            <label for="privacy-agree" style="font-size: 0.9em; color: var(--text-color); cursor: pointer;">개인정보 수집 및 상담 진행을 위한 이용 약관 동의 (필수)</label>
+                        </div>
+                        <button type="submit" class="cta-btn">맞춤형 치질수술 실비 보험 보장 비율 계산하기</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <div class="content-card">
+                    <h2>2026년 기준 치질수술 실비 보험 보장 범위와 세대별 약관 완전 정복</h2>
+                    <p>항문 주위 조직이 늘어나 통증과 출혈을 유발하는 치질은 국내 다빈도 수술 순위에서 매년 최상위권을 기록할 정도로 흔한 질환입니다. 하지만 항문 부위의 수술이라는 특성상 주변에 선뜻 조언을 구하기 어렵고, 실제로 발생하는 전체 치료 비용이 얼마인지, 본인이 가입한 실손의료보험을 통해 정당하게 환급을 청구할 수 있는지 몰라 고통을 참고 병원 방문을 차일피일 미루는 사례가 아주 많습니다. 이번 가이드에서는 2026년도 최신 건강보험 요율 및 실손보험 표준 약관을 토대로 치질수술에 필요한 병원 예상 비용과 실손 청구 시 반드시 짚고 넘어가야 할 급여와 비급여 항목의 구체적 차이점을 알기 쉽게 제공합니다.</p>
+                    
+                    <p>우리나라의 현행 건강보험 체계에서 치핵, 치루, 치열 등을 모두 아우르는 항문 수술은 보건복지부가 규정한 포괄수가제(DRG)의 적용을 받습니다. 이는 정해진 수술법과 질병군에 대해 병원비가 일률적으로 고정되어 과잉 진료의 우려가 적다는 이점이 있습니다. 그러나 세부 마취 기법, 고가의 특수 무통 수술 기구 도입, 상급 병실 입원 등 개별 선택 사항에 따라 비급여 금액의 격차가 발생하기 때문에 본인의 가입 시기별 실비 보장 세대를 정확히 대조해보아야 합니다.</p>
+                </div>
+
+                <div class="content-card">
+                    <h3>1. 치질수술 비용의 기본 구조와 평균 지출 분포</h3>
+                    <p>항문 외과에서 진단을 받고 수술을 결정하게 되면, 총 진료비 고지서는 크게 건강보험공단이 부담하는 공단부담금과 환자가 병원 창구에서 직접 납부해야 하는 본인부담금으로 나뉘게 됩니다. 포괄수가제 하에서 치질수술을 진행할 때 발생하는 일반적인 환자 본인부담금의 가격은 병원의 규모에 따라 체계적으로 정해져 있습니다.</p>
+                    
+                    <div class="data-visualization">
+                        <h4>의료기관 규모별 치질수술 본인부담금 및 비급여 예상 견적 비교</h4>
+                        <table class="pricing-table">
+                            <thead>
+                                <tr>
+                                    <th>의료기관 구분</th>
+                                    <th>기본 급여 본인부담금</th>
+                                    <th>대표적 비급여 항목 요금</th>
+                                    <th>합산 예상 총 비용</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>의원급 (동네 항문외과 전문의)</td>
+                                    <td>약 200000원 에서 300000원</td>
+                                    <td>약 100000원 내외 (PCA 무통주사 등)</td>
+                                    <td>약 300000원 에서 400000원</td>
+                                </tr>
+                                <tr class="highlight-row">
+                                    <td>병원급 (항문 질환 전문 병원)</td>
+                                    <td>약 250000원 에서 350000원</td>
+                                    <td>약 250000원 내외 (PPH 기구대 포함)</td>
+                                    <td>약 500000원 에서 600000원</td>
+                                </tr>
+                                <tr>
+                                    <td>종합병원 이상 (상급 의료기관)</td>
+                                    <td>약 350000원 에서 500000원</td>
+                                    <td>약 300000원 이상 (상급병실 차액 포함)</td>
+                                    <td>약 700000원 에서 1000000원 이상</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p style="font-size: 0.85em; margin-top: 12px; color: #718096; line-height: 1.6;">위의 산정 수치는 포괄수가제가 적용되는 2박 3일 입원을 기준으로 작성된 보편적인 예시입니다. 환자의 병증 정도, 합병증 유무, 특수 원형자동문합기 수술(PPH) 기구 도입 여부 및 수면 마취 등의 비급여 선택 요금제 적용 사항에 따라 최종 결제액은 상이할 수 있습니다.</p>
+                    </div>
+
+                    <h4>급여 항목과 비급여 항목의 중요한 성격 차이</h4>
+                    <p>치질수술 시 실손의료비를 제대로 지급받기 위한 핵심 열쇠는 바로 영수증상 급여와 비급여의 완벽한 구분입니다. <strong>급여 항목</strong>은 건강보험의 보장 테두리 안에 들어오는 필수 영역으로, 기본적인 수술비, 일반 마취료, 표준 다인실 입원료, 수술 후 처방 약제비 등이 포함됩니다. 환자는 이 중 약 20퍼센트 정도의 금액만을 부담하며, 이 본인부담금은 2세대 이후의 모든 실비 가입자라면 높은 보장 비율로 환급받을 수 있습니다.</p>
+                    
+                    <p>반면 <strong>비급여 항목</strong>은 미용, 통증 경감 목적 등 전적으로 환자의 편의에 따라 선택하는 항목들입니다. 대표적으로 항문 수술 후 통증 완화에 필수적인 자가조절 진통장치(PCA, 일명 무통주사), 고화질 초음파 검사료, 급여 혜택이 닿지 않는 상급병실료(1인실 및 특실) 등이 있습니다. 이 비급여 항목들은 표준화 실비 보험 약관상 원칙적으로 보장 대상에서 영구 제외되거나 보장 한도가 크게 제한되므로, 수술 전 의료진과의 사전 상담 과정에서 불필요한 고액 비급여 지출이 포함되어 있지 않은지 꼼꼼하게 따져보아야 배액 청구 시 낭패를 보지 않습니다.</p>
+                </div>
+
+                <div class="content-card">
+                    <h3>2. 연령별 및 대상별 항문 질환 발생 유형과 맞춤형 보험 대응 전략</h3>
+                    <p>항문 주위 정맥이 뭉쳐 발생하는 치핵이나 피부가 찢어지는 치열, 항문선 안쪽이 곪아 터지는 치루 등은 성별과 세대를 막론하고 흔하게 발병합니다. 하지만 각 연령대의 고유한 신체 특징 및 생활 양식에 따라 병변의 원인과 진료 형태는 다채롭게 나뉩니다. 전 세대에 걸쳐 발생하는 항문 질환의 양상을 세밀하게 분류하여 맞춤형 자산 대응 전략을 도출해 보았습니다.</p>
+
+                    <h4>청소년 및 초기 성인 세대의 특징</h4>
+                    <p>학업 스트레스와 만성적인 운동 부족을 호소하는 <strong>10대 청소년 치질</strong> 환자들의 경우 초기 질환을 다소 부끄럽게 여겨 방치하다가 심각한 수준에 이르러 외과를 찾는 경향이 많습니다. 이와 유사하게 군대라는 특수한 공간적 제약을 겪는 <strong>군인 군대 복무 중 치핵수술</strong> 발생 건 역시 훈련 도중 지속적인 하체 압박으로 인해 병세가 악화되곤 합니다. 성인이 되어 독립을 준비하는 <strong>만 19세 이하 소아 치질</strong> 및 대학에 입학한 <strong>만 20세 대학생 항문 질환</strong> 환자군, 그리고 다이어트로 극심한 변비 부작용을 마주하는 <strong>20대 초반 다이어트 부작용 변비</strong> 경험자들과 <strong>20대 여성 변비 치핵</strong> 및 <strong>20대 중반 취업 준비생 스트레스성 치열</strong> 대상자들은 학업과 구직 기간 중 급격한 배변 장애를 겪게 됩니다. 이들은 수술보다는 좌욕 등 보존적 요법을 시도할 확률이 높지만, 기왕증 면책 조항에 걸리지 않도록 실손 가입 시점을 신중히 체크해 두는 것이 이롭습니다.</p>
+
+                    <h4>활발한 경제 활동기 성인의 특징</h4>
+                    <p>직장 생활이 본궤도에 오르는 <strong>20대 사회초년생 치질</strong>과 술자리가 잦은 <strong>30대 남성 직장인 치핵수술</strong> 대상자들은 주로 장시간 의자에 앉아 근무하면서 혈액 순환 장해를 겪어 수술적 제거가 긴박하게 요구됩니다. 이들은 소득 기반이 온전히 자리 잡기 이전이므로 <strong>30대 초반 젊은 직장인 수술비</strong> 수준을 철저히 확인하고 <strong>만 24세 청년 치핵 자가진단</strong> 프로그램이나 <strong>만 30세 직장 건강검진 치핵</strong> 판정 소견을 적시에 활용해 병을 키우지 않는 지혜가 필요합니다. 또한 임신과 출산이라는 신체 격변기를 지나는 <strong>30대 여성 임신성 치질</strong> 임산부들과 산후 회복 중인 <strong>임산부 산후 치질 치료</strong> 대상자, 그리고 가사 노동으로 골반강 압박이 누적된 <strong>30대 중반 육아맘 만성 치질 치료</strong> 군은 임산부 안전 약물 복용 여부와 수술비 지급 적정성을 실손 보상 한도와 대조해야 합니다.</p>
+
+                    <h4>중장년층 및 고령화 세대의 특징</h4>
+                    <p>노화가 점진적으로 이행되는 중년층에서는 오랜 변비로 만성화된 병증을 가진 <strong>40대 중장년층 만성 치질</strong>과 성호르몬 불균형으로 결합 조직이 연약해지는 <strong>40대 여성 갱년기 치질</strong> 및 <strong>40대 후반 폐경기 여성 항문 가려움증</strong> 질환자가 상당한 비중을 점유합니다. 가정을 부양하고 생업을 일구는 <strong>40대 초반 자영업자 빠른 회복 수술</strong> 수요와 대장 질환 정밀 선별을 겸하는 <strong>만 50세 대장내시경 동시 수술</strong> 시행군, 그리고 면역력 감퇴로 고름 주머니가 생기는 <strong>50대 남성 치루 수술</strong> 및 괄약근 긴장도가 약해져 혈류 공급이 줄어드는 <strong>50대 노화성 치핵</strong> 환자들은 치료 기간 동안의 업무 공백을 보완해 줄 수 있는 <strong>50대 후반 장년층 입원 수술비 비교</strong> 정보를 적극 입수하여 입원 일당 특약을 알차게 보강해야 합니다. 노화가 완연해진 <strong>60대 이상 노년층 치열</strong> 환자나 혈관계 노화로 음주 후 급성 울혈을 겪는 <strong>50대 초반 남성 음주 후 치핵 악화</strong> 환자, 은퇴 자금의 누수를 예방해야 하는 <strong>60대 초반 퇴직 후 건강 관리</strong> 세대 및 배변 시 예리한 고통에 신음하는 <strong>60대 후반 고령 운전자 항문 압박 통증</strong> 운전자들과 심혈관 기저 질환을 고려해 수술 계획을 짜야 하는 <strong>70대 어르신 무통 치질 수술</strong> 단계의 <strong>고령층 만성 질환자 항문 수술</strong> 대상자는 약제 간섭과 마취 리스크를 사전 방지하기 위해 심도 있는 종합 의료진과 함께 <strong>여성 전문의 외과 선호 연령대</strong> 진료 정보를 면밀히 살피는 동시에 다이렉트 창구를 통해 가입한 본인의 보장 등급을 우선 파악해야 합니다.</p>
+                </div>
+
+                <div class="content-card">
+                    <h3>3. 실손의료보험 세대별 치질수술 보장 약관 정밀 대조</h3>
+                    <p>치질수술을 받고 보험금을 청구할 때 환자들이 가장 많이 겪는 혼란은 가입한 보험의 시기별 보장 여부입니다. 실손의료비보험은 가입 연도에 따라 크게 1세대부터 5세대까지 구분되며, 각각의 보장 규정은 아주 극명한 차이점을 보입니다.</p>
+
+                    <h4>1세대 실손보험 (2009년 8월 이전 가입자)</h4>
+                    <p>일명 상해 및 질병 전액 보장으로 널리 알려진 1세대 실손보험은 겉보기에는 자기부담률이 제로에 가깝거나 전혀 없어 완벽해 보이지만, 불행히도 항문 및 직장 관련 질환(질병코드 K60에서 K62, K64 등)을 약관상 대표적인 <strong>면책 사항</strong>으로 지정하고 있습니다. 즉, 이 시기에 실비에 가입한 계약자는 치질 치료비에 관해 단 일 원도 돌려받지 못하는 사례가 대부분입니다. 따라서 본인의 청구 영수증을 보내기 전에 반드시 약관철의 질병 제외 항목에 치핵이 들어가 있는지 먼저 찾아보는 습관이 필요합니다.</p>
+
+                    <h4>2세대 실손보험 (2009년 10월 ~ 2017년 3월 가입자)</h4>
+                    <p>실손보험의 전면 표준화가 이루어진 2세대 시기부터 비로소 항문 질환이 보장 범위에 포함되기 시작했습니다. 다만, 국민건강보험법에서 보장하는 <strong>급여 항목</strong> 중 본인부담금에 한해서만 약 80퍼센트에서 90퍼센트 비율로 환급을 지급합니다. 무통주사나 특별 수술 재료 등 병실료 이외의 비급여 치료비는 일절 환급 대상에서 제외되므로 주의해야 합니다.</p>
+
+                    <h4>3세대 및 4세대 실손보험 (2017년 4월 ~ 2026년 4월 가입자)</h4>
+                    <p>3세대와 4세대 역시 기존의 표준화 기조를 그대로 승계하여 치질 치료의 급여 본인부담금 부분만을 환불 대상으로 삼습니다. 4세대 실손의 경우 급여 자기부담 비율이 20퍼센트로 단일 고정되어 있어 실질 환급 금액은 다소 감소하였으나, 안정적인 청구 환경을 지원합니다. 이 연령대 및 상품군 가입자들 또한 비급여 약제나 특수 수술 비용은 자부담해야 함을 확실히 숙지해야 합니다.</p>
+
+                    <h4>2026년 5세대 실손보험 도입에 따른 중요 변화</h4>
+                    <p>2026년도에 정식 출범한 5세대 실손보험은 의료 자원의 지속 가능성을 제고하기 위해 다소 정교한 규제적 변동 사항을 포함하고 있습니다. 특히 비필수적인 고가 치료법 오남용을 제어하고자 5세대 신규 약관에서는 비중증 분야의 비급여 의료비 자부담률을 50퍼센트까지 대폭 끌어올렸으며, 전체 연간 한도를 10000000원 선으로 조정했습니다. 다행스럽게도 치질수술에 필수 적용되는 포괄수가제 내의 급여 항목 보장 기조는 비교적 양호하게 유지되고 있어 환자가 수술 전 통원 단계와 입원 단계를 지혜롭게 통합 계산한다면 자금 소모를 큰 폭으로 완화할 수 있습니다.</p>
+                </div>
+
+                <div class="content-card">
+                    <h3>4. 치질수술 비용 절감을 위한 핵심 10가지 전략</h3>
+                    <p>체계적이고 검증된 다음의 10가지 보장 활용 비법을 확실하게 이행하면 치료 자금의 지출을 최소화하고 든든하게 가정 재정을 방어할 수 있습니다.</p>
+                    
+                    <p><strong>첫째, 다이렉트 실비 청구 전산망과 비교 플랫폼을 활용하십시오.</strong> 인터넷 전용 경로를 통해 신규 가입을 고려할 때는 수수료 거품을 제거해 제일 저렴한곳을 찾아 가입할 수 있는 다이렉트 상품을 선택하는 것이 매월 내는 예산을 줄이는 지름길입니다.</p>
+                    
+                    <p><strong>둘째, 보유한 보험의 가입 년도를 면밀하게 재확인하십시오.</strong> 1세대 실비의 면책 여부와 2세대 이후 급여 청구 보상 한도의 차이점을 가늠하지 않으면 보상 신청을 하더라도 거절되어 시간만 낭비할 우려가 있습니다.</p>
+                    
+                    <p><strong>셋째, 생명보험 및 손해보험의 종수술비 및 질병수술비 특약을 동시 청구하십시오.</strong> 비례보상하는 실비보험과 달리 질병 수술비 정액 보상 특약은 치핵 수술 약관 조건이 맞을 시 중복 지급이 가능하여 치료 본인부담금을 메우고도 남는 혜택을 줍니다.</p>
+                    
+                    <p><strong>넷째, 포괄수가제(DRG) 기본 급여 산정 방식을 올바로 숙지하십시오.</strong> 수술비 전반이 정찰제로 작용해 규격화되어 있음을 알면 터무니없이 과도한 총액 청구를 사전에 가려내고 적정한 비용만을 병원에 지불할 수 있습니다.</p>
+                    
+                    <p><strong>다섯째, 병원 규모에 따른 기본 부담 차액을 활용하십시오.</strong> 정밀 수술 설비가 필요한 난치성 치루가 아니라면 규모가 비교적 작아 수가가 낮게 잡히는 전문 의원급을 택하는 것이 결제 예상 금액을 대폭 경감하는 영리한 행동입니다.</p>
+                    
+                    <p><strong>여섯째, 비급여 필수 옵션인 무통주사 장치의 가격을 사전에 협의하십시오.</strong> 극심한 환부 작열감을 줄이기 위해 PCA 주사는 필수적이지만 병원마다 책정하는 가격에 큰 차이가 있으므로 사전에 간호 파트나 상담 부서에 가격 조율을 구해보는 것을 추천합니다.</p>
+                    
+                    <p><strong>일곱째, 대형 보험 어플과 토스 등 핀테크 모바일 앱을 능숙하게 사용하십시오.</strong> 영수증 촬영만으로 원스톱 청구가 완료되는 다양한 간편 청구 전용 어플을 다루면 복잡한 서류 구비 번거로움 없이 빠른 속도로 급여 지원금을 수령할 수 있습니다.</p>
+                    
+                    <p><strong>여덟째, 치료비 상세 내역서를 수술 당일 즉시 퇴원 전에 인쇄해 두십시오.</strong> 진료비 세부내역서가 누락될 시 보상과 조사역의 서류 보완 요구로 인해 처리가 수주일 지연될 수 있습니다.</p>
+                    
+                    <p><strong>아홉째, 맞춤형 약관 전문가 컨설팅 서비스를 무상으로 활용하십시오.</strong> 주저하지 말고 가입된 브랜드 고객센터나 전문 상담 매니저에게 자신의 담보 내용을 보내 분석을 받아보는 장점을 충분히 취하십시오.</p>
+                    
+                    <p><strong>열째, 입원 병실을 다인실 위주로 우선 배정 요청하십시오.</strong> 4인실 이상의 기준 병실은 급여 범위에 속해 수술 후 입원비 부담을 완전히 소거해 주므로, 사치스러운 1인실 사용을 삼가는 것만으로도 수십만 원의 청구금 격차를 절약할 수 있습니다.</p>
+                </div>
+
+                <div class="content-card">
+                    <h3>5. 온라인 커뮤니티의 생생한 치료 경험담 및 주의 요망 마케팅 실태</h3>
+                    <p>최근 디시인사이드는 물론 보배드림, 펨코 및 에펨코리아 등 다채로운 웹 광장에는 수술 후기 카테고리를 빌어 내돈내산 경험에 근거한 상세한 수술 성지나 의원 좌표 정보가 성황리에 유통되고 있습니다. 실제 경험자들이 작성한 이러한 후기는 마취가 풀리는 순간의 현실적 고통 통제 요령이나 우수한 간호 서비스를 보장하는 의료원 브랜드를 판별하는 잣대로 유익하게 작용합니다.</p>
+                    
+                    <p>그러나 이러한 공론장 이면에는 일부 불성실한 중개 브로커들이 접근하여 모바일 사이트 링크를 유도하며 무리한 사은품 지급이나 부당한 현금지원, 상품권 회수식의 불합법적 환급 이벤트를 은밀하게 살포하는 경우도 있으므로 환자는 각별한 주의를 기울여야 합니다. 이러한 불법 계약 수혜 유인은 차후 약관법 위반으로 계약 전체가 실효되는 불이익을 마주할 소지가 있으므로 오직 공식 본사 창구나 네이버, 구글, 유튜브 등에서 제공되는 투명한 정보 플랫폼만을 이용해야 안전합니다. 또한 트위터, 인스타그램, 페이스북, 카카오톡 오픈채팅 및 텔레그램 뉴스룸 등을 순회할 시에도 근거가 부족한 과대 보장 과장에 현혹되지 말고 합리적인 보장 구조만을 객관적으로 대조하는 냉철한 눈을 견지하시기를 적극 권고합니다. 최근에는 대화형 서비스인 제미나이, 챗지피티 및 고도화된 네이버 AI 안내 챗봇 등을 구동하여 애매한 약관 텍스트의 실제 해설을 도출하는 지식 기반 탐색 방법도 유행하고 있으므로 이를 현명하게 응용하는 것도 권할 만합니다.</p>
+                </div>
+
+                <div class="external-links">
+                    <h3>신뢰할 수 있는 공식 의료 및 보장 제도 정보 제공 기관</h3>
+                    <ul>
+                        <li><a href="https://silbietopbohuml.directreliable.com" target="_blank" rel="noopener">신뢰성 높은 질병 및 의료 보장 정보 안내 포털</a></li>
+                        <li><a href="https://www.nhis.or.kr" target="_blank" rel="noopener">국민건강보험공단 공식 웹사이트</a></li>
+                        <li><a href="https://www.hira.or.kr" target="_blank" rel="noopener">건강보험심사평가원 포괄수가제 및 진료비 정보 안내</a></li>
+                        <li><a href="https://namu.wiki/w/%EC%B9%98%ED%95%B5" target="_blank" rel="noopener">나무위키 치핵 정보 상세 문서</a></li>
+                    </ul>
+                </div>
+                
+                <ul class="keyword-list">
+                    <li>#치질수술실비보험</li>
+                    <li>#항문수술실손보장</li>
+                    <li>#치핵수술비용비교</li>
+                    <li>#무통주사실비환급</li>
+                    <li>#포괄수가제환자부담</li>
+                    <li>#종수술비특약중복</li>
+                    <li>#5세대실손보험개정</li>
+                    <li>#여성항문외과추천</li>
+                    <li>#임산부치질수술비</li>
+                    <li>#다이렉트보험료비교</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section class="content-section" style="background-color: #f7fafc; padding-top: 10px;">
+            <div class="container">
+                <div class="content-card">
+                    <h2>치질수술 실비 청구 관련 자주 묻는 질문 (FAQ)</h2>
+                    
+                    <div class="faq-item">
+                        <h3>1세대 실비보험을 갖고 있는데 정말 치질수술은 보상이 안 되나요? <span class="toggle-txt">답변 보기</span></h3>
+                        <p>그렇습니다. 2009년 8월 이전에 체결된 1세대 실손보험은 약관의 면책 사양에 직장 및 항문 질환을 명시적으로 수록하고 있어 수술 및 입원 비용 전액에 대해 실비 청구가 불가합니다. 다만, 가입해 두신 다른 건강보험에 질병수술비나 1에서 5종 종수술비 담보가 추가 구성되어 있다면 정액형태의 보상금 지급은 가능하므로 이를 점검하십시오.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>치핵수술을 위해 원형자동문합기(PPH) 기구를 쓰면 실비로 돌려받을 수 있나요? <span class="toggle-txt">답변 보기</span></h3>
+                        <p>PPH 수술 기구대 자체는 대부분 건강보험 요양급여 목록에 지정되어 있어 급여의 본인부담금 범주로 정리됩니다. 따라서 표준화 실비를 유지하고 계시다면 해당 기구대 지출 또한 정상적으로 실비 환급을 청구할 수 있습니다. 단, 병원 규모나 합병증 동반 여부에 따라 일부 기구 사용료가 비급여로 전가되는 경우가 간혹 있으므로 진료비 세부내역서상 급여 처리 여부를 사전에 재차 확인하십시오.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>무통주사(PCA)도 비급여인데 실손에서 전혀 안 나오나요? <span class="toggle-txt">답변 보기</span></h3>
+                        <p>표준 약관상 비급여 주사제나 처치료는 보상 대상에서 엄격히 제외되어 있으므로, 원칙적으로 무통주사 비용은 실비보험으로 되돌려 받기 어렵습니다. 그러나 최근 사법부 및 분쟁조정위원회의 권고에 따라 수술 과정 중 수술방 내에서 마취 목적으로 주입되는 단발성 통증 조절제에 한하여 간혹 급여로 분류해 주는 외과도 존재하므로 담당 원무과에 사전 질의해 보시는 것이 좋습니다.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>2026년 이후 가입한 5세대 실비보험은 치질 보장에 불리한가요? <span class="toggle-txt">답변 보기</span></h3>
+                        <p>5세대 실비보험은 도덕적 해이를 제어하기 위해 비급여 부문의 보증을 엄격히 축소했으나, 급여로 지정된 표준적 치질 수술 본인부담 부분은 기존의 전반적인 의료 실비 보상 비율을 온전히 이어받고 있습니다. 따라서 상급 병실 이용을 삼가고 기본적인 다인실 요양 및 규격화된 수술 위주로 치료를 끝마치신다면 5세대 계약자라고 해서 보상 지급에서 불리할 우려는 거의 없습니다.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h3>수술 후 보험금 청구 시 어떤 서류를 병원에서 챙겨야 하나요? <span class="toggle-txt">답변 보기</span></h3>
+                        <p>치질수술 청구를 지연 없이 완료하려면 첫째로 병원비 총액 영수증, 둘째로 진료비 세부내역서, 셋째로 진단 코드(K64 등)와 구체적 수술 명칭이 적시된 수술확인서 또는 진단서가 반드시 필요합니다. 해당 필수 서류들은 수술 후 퇴원 계산서를 정산받을 때 원무과에 일괄 발급 요청하시면 즉각 챙길 수 있습니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
-  </body>
-</html>
+    
+    <script>
+        // FAQ 아코디언 기능 구현 (사용자 가독성 제고)
+        document.querySelectorAll('.faq-item h3').forEach(item => {
+            item.addEventListener('click', event => {
+                const parent = item.parentElement;
+                const toggleTxt = item.querySelector('.toggle-txt');
+                
+                // 현재 클릭한 요소 활성화 토글
+                parent.classList.toggle('active');
+                
+                // 열림/닫힘 텍스트 변경
+                if (parent.classList.contains('active')) {
+                    toggleTxt.textContent = '답변 접기';
+                } else {
+                    toggleTxt.textContent = '답변 보기';
+                }
+            });
+        });
+
+        // 폼 제출 시 간단 안내 기능 (체류 유도 및 가상 연산 연출)
+        document.getElementById('insurance-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('user-name').value;
+            const ageGroup = document.getElementById('user-age-group').value;
+            const gen = document.getElementById('insurance-gen').value;
+            
+            let message = name + " 고객님을 위한 치질수술 실비 보장 가예측 결과가 준비되었습니다.\n\n";
+            
+            if(gen === '1') {
+                message += "선택하신 1세대 실손보험은 아쉽게도 항문 질환이 보장 면책(보장 제외)될 가능성이 매우 큽니다. 보유 중이신 질병수술비 특약을 통한 우회 환급 전략을 설계해 드릴 수 있도록 전문 분석 센터에서 곧 연락을 드리겠습니다.";
+            } else if(gen === 'none') {
+                message += "현재 실손보험을 보유하고 있지 않으시므로 전액 본인부담이 예상됩니다. 다만 국가 포괄수가제 덕분에 기본 수술비용은 최대 약 400000원 선에서 해결 가능하오니 걱정 마시고 치료에 임하십시오.";
+            } else {
+                message += "가입하신 " + gen + "세대 실손보험 약관 분석 결과, 치핵수술 총 급여비용의 약 80%에서 90% 수준까지 안정적인 환급이 예상됩니다. 비급여인 무통주사(PCA) 및 추가 특약 연동을 포함한 상세 요율 컨설팅을 즉시 지원해 드리겠습니다.";
+            }
+            
+            alert(message);
+        });
+    </script>
+  
